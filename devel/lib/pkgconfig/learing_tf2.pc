@@ -1,0 +1,8 @@
+prefix=/home/imagic_chen/catkin_ws_0/devel
+
+Name: learing_tf2
+Description: Description of learing_tf2
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

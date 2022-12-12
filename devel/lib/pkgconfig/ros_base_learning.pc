@@ -1,0 +1,8 @@
+prefix=/home/imagic_chen/catkin_ws_0/devel
+
+Name: ros_base_learning
+Description: Description of ros_base_learning
+Version: 0.0.0
+Cflags: -I/home/imagic_chen/catkin_ws_0/devel/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs message_runtime
