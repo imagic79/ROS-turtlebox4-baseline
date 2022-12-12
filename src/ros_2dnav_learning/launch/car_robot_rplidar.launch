@@ -1,0 +1,39 @@
+<launch>
+  <!-- Set launch args -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model" default="$(find urdf_learning)/urdf/car_robot_rplidar.xacro"/>
+  <arg name="rvizconfig" default="$(find ros_2dnav_learning)/config/nav_slam.rviz"/>
+  
+  <!-- Run gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="world_name" value="$(find ros_2dnav_learning)/world/room3.world"/>
+  </include>
+
+  <!-- Load robot model args -->
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+  <!--
+  <param name="robot_description" textfile="$(find urdf_learning)/urdf/car_chassis_2diff.xacro.urdf"/>
+  -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ros_2dnav_learning)/config/nav_slam.rviz" required="true"/>
+  <!-- <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"/> -->
+
+  <!-- Load robot model in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-param robot_description -urdf -model car_chassis_2diff"/>
+
+  <!-- Publish control -->
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <param name="default_topic" value="/cmd_vel"/>
+  </node>
+
+</launch>

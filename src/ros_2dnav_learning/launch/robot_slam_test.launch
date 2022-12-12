@@ -1,0 +1,13 @@
+<launch>
+    <arg name="move_forward_only" default="true" />  
+
+
+    <include file="$(find ros_2dnav_learning)/launch/robot_test.launch"/>
+    <include file="$(find ros_2dnav_learning)/launch/gmapping.launch"/>
+    <include file="$(find ros_2dnav_learning)/launch/move_base.launch">
+        <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+    </include>
+    <include file="$(find ros_2dnav_learning)/launch/explore.launch" />
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom" /> -->
+</launch>
+

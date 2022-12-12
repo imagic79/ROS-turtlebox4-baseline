@@ -1,0 +1,14 @@
+<launch>
+    <arg name="move_forward_only" default="true" />  
+
+
+    <include file="$(find ros_2dnav_learning)/launch/car_robot_rplidar.launch"/>
+    <include file="$(find ros_2dnav_learning)/launch/gmapping.launch"/>
+    <include file="$(find ros_2dnav_learning)/launch/move_base.launch">
+        <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+    </include>
+    <include file="$(find ros_2dnav_learning)/launch/explore.launch" />
+
+
+</launch>
+

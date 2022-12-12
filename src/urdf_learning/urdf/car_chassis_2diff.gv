@@ -1,0 +1,11 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"lf_motor_link" [label="lf_motor_link"];
+"rt_motor_link" [label="rt_motor_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "base_lf_motor_joint" [label="xyz: 0 0.1 0 \nrpy: -1.5708 0 0"]
+"base_lf_motor_joint" -> "lf_motor_link"
+"base_link" -> "base_rt_motor_joint" [label="xyz: 0 -0.1 0 \nrpy: 1.5708 -0 0"]
+"base_rt_motor_joint" -> "rt_motor_link"
+}

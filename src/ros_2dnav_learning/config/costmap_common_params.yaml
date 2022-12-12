@@ -1,0 +1,16 @@
+robot_radius: 0.2  # 机器人半径
+# footprint: [[-0.12, -0.12], [-0.12, 0.12], [0.12, 0.12], [0.12, -0.12]] 
+
+obstacle_range: 4.0  # 主要用于障碍的探测，最大探测距离
+raytrace_range: 4.5 # 用于在机器人运动过程中，实时清除代价地图中的障碍物，并更新可移动的自由空间数据。
+
+
+inflation_radius: 0.6  #膨胀半径，全局路径离障碍太近时调大，但不能覆盖整个道路
+
+cost_scaling_factor: 6.0   #障碍物膨胀比例系数，全局路径呈锯齿状时调大，调大，可以使得全局路径较平滑
+
+map_type: costmap
+observation_sources: scan
+scan: {sensor_frame: rplidar_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+
+

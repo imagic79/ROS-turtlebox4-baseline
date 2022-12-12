@@ -1,0 +1,28 @@
+<launch>
+  <params name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_learning)/config/car_robot.rviz" required="true"/>
+
+  <arg name="paused" refault="false"/>
+  <arg name="use_sim_time" refault="true"/>
+  <arg name="gui" refault="true"/>
+  <arg name="headless" refault="false"/>
+  <arg name="debug" refault="false"/>
+  <arg name="model" refault="$(find urdf_learning)/urdf/car_chasssis_2diff_gazebo.xacro"/>
+  <arg name="rvizconfig" default="$(find urdf_learning)/config/car_robot_gazebo.rviz"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="gui" value="$(arg gui)" />
+      <arg name="paused" value="$(arg paused)" />
+      <arg name="use_sim_time" value="$(arg use_sim_time)" />
+      <arg name="headless" value="$(arg headless)" />
+  </include>
+
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" arg="-param robot_description -urdf -model car_chassis_2diff"/>
+
+</launch>

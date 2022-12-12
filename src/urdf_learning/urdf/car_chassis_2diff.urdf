@@ -1,0 +1,101 @@
+<?xml version = "1.0" ?>
+<robot name="car_chassis_2diff">
+    <link name="base_link">
+        <visual>
+            <origin xyz=" 0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.08" radius="0.2"/>
+            </geometry>
+            <material name="yellow">
+                <color rgba="0.9 0.9 0.1 0.7"/>
+            </material>
+        </visual>
+    </link>
+    
+    <joint name="base_caster_joint" type="fixed">
+        <origin xyz="0.15 0 -0.03" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="caster_link"/>
+    </joint>
+    <link name="caster_link">
+        <visual>
+            <origin xyz=" 0 0 0" rpy="-1.5707963 0 0"/>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.1 0.9 0.1 0.9"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="base_lf_motor_joint" type="fixed">
+        <origin xyz="0 0.15 -0.03" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="lf_motor_link"/>
+    </joint>
+    <link name="lf_motor_link">
+        <visual>
+            <origin xyz=" 0 0 0" rpy="-1.5707963 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.01"/>
+            </geometry>
+            <material name="red">
+                <color rgba="0.9 0.1 0.1 0.9"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="lf_motor_lf_wheel_joint" type="continuous">
+        <origin xyz="0 0.02 0" rpy="0 0 0"/>
+        <parent link="lf_motor_link"/>
+        <child link="lf_wheel_link"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <link name="lf_wheel_link">
+        <visual>
+            <origin xyz=" 0 0 0" rpy="1.5707963 0 0"/>
+            <geometry>
+                <cylinder length="0.01" radius="0.03"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.1 0.9 0.1 0.9"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="base_rt_motor_joint" type="fixed">
+        <origin xyz="0 -0.15 -0.03" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="rt_motor_link"/>
+    </joint>
+    <link name="rt_motor_link">
+        <visual>
+            <origin xyz=" 0 0 0" rpy="1.5707963 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.01"/>
+            </geometry>
+            <material name="red">
+                <color rgba="0.9 0.1 0.1 0.9"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="rt_motor_rt_wheel_joint" type="continuous">
+        <origin xyz="0 -0.02 0" rpy="0 0 0"/>
+        <parent link="rt_motor_link"/>
+        <child link="rt_wheel_link"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <link name="rt_wheel_link">
+        <visual>
+            <origin xyz=" 0 0 0" rpy="1.5707963 0 0"/>
+            <geometry>
+                <cylinder length="0.01" radius="0.03"/>
+            </geometry>
+            <material name="green">
+                <color rgba="0.1 0.9 0.1 0.9"/>
+            </material>
+        </visual>
+    </link>
+</robot>
